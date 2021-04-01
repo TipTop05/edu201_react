@@ -1,16 +1,11 @@
 import './App.css';
 import React from "react";
 import {Route, BrowserRouter, NavLink} from "react-router-dom";
+import {Menu} from "./components/Menu";
+import {PostList} from "./components/PostList";
+import {Post} from "./components/Post";
 
-function Menu(){
-    return(
-        <nav className="nav">
-            <NavLink className="nav-link active" aria-current="page" to="/">Главная</NavLink>
-            <NavLink className="nav-link" to="/about">О нас</NavLink>
-            <NavLink className="nav-link" to="/contact-us">Контакты</NavLink>
-        </nav>
-    )
-}
+{/* Это будем разносить в разные файлы
 
 function ContactUs(){
     return (
@@ -41,18 +36,22 @@ function MainPage(){
     )
 }
 
+*/}
+
 function App() {
     return (
-        <div className="App">
+        <div className="container">
             {/* Одностраничная SPA навигация */}
             <BrowserRouter>
                 <Menu/>    {/* Подключаем компонент Меню */}
-                <Route exact path="/" render={()=><MainPage/>} />
-                <Route path="/about" render={()=><AboutUs/>}/>
-                <Route path="/contact-us" render={()=><ContactUs/>}/>
+                <Route exact path="/" render={()=><PostList/>} />
+                <Route path="/about" render={()=><h1>О нас</h1>}/>
+                <Route path="/contact-us" render={()=><h1>Контакты</h1>}/>
+                <Route path="/post" render={()=><Post/>}/>
             </BrowserRouter>
         </div>
     );
 }
 
 export default App;
+
