@@ -74,3 +74,5 @@ export class AddPost extends React.Component{
         </div>
     }
 }
+
+
