@@ -12,6 +12,7 @@ function Tr(props){
 
 {/* Мы хотим, чтобы в классе PostList образовались все функции, методы и свойства,
 которые доступны доступны компонентам Reat поэтому пишем React.Component */}
+{/* В React после отрисовки компонентов render, запускается метод componentDidMount */}
 export class PostList extends React.Component{
     constructor() {
         super();
@@ -30,6 +31,7 @@ export class PostList extends React.Component{
                 let rows = [];
                 for (let i = 0; i < result.length; i++) {
                     rows.push(<Tr
+                        key={i}
                         index={i+1}
                         title={result[i].title}
                         author={result[i].author}
