@@ -10,7 +10,7 @@ export class Reg extends React.Component{
             lastname:"",
             email:"",
             pass:"",
-            info: ""
+            info:"",
         }
     }
 
@@ -34,6 +34,10 @@ export class Reg extends React.Component{
     handleInputChange(event){
         const value = event.target.value;
         const name = event.target.name;
+        this.setState({
+            [name]:value
+        })
+
         if (name === "email"){
             const formData = new FormData();
             formData.append("email",value);
@@ -44,18 +48,15 @@ export class Reg extends React.Component{
                 .then(result=>{
                     if(result.result === "exist"){
                         this.setState({
-                            info: "Пользователь с таким email уже существует. Используйте другой email."
+                            info:"Пользователь с таким email уже существует. Используйте другой email."
                         })
-                    }else{
+                    } else {
                         this.setState({
-                            info: ""
+                            info: "Регистрация прошла успешно. Выполните вход."
                         })
                     }
                 });
         }
-        this.setState({
-            [name]:value
-        })
     }
 
     render() {
@@ -70,13 +71,13 @@ export class Reg extends React.Component{
                 </div>
                 <div className="mb-3">
                     <input value={this.state.email} onChange={this.handleInputChange} name="email" type="email" className="form-control" placeholder="E-mail"/>
+                    <p style={{color:"red"}}>{this.state.info}</p>
                 </div>
                 <div className="mb-3">
                     <input value={this.state.pass} onChange={this.handleInputChange} name="pass" type="password" className="form-control" placeholder="Пароль"/>
                 </div>
                 <div className="mb-3">
                     <input type="submit" className="form-control btn btn-primary" value="Зарегистрироваться"/>
-                    <p style={{color:"red"}}>{this.state.info}</p>
                 </div>
             </form>
         </div>

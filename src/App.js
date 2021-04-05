@@ -15,7 +15,7 @@ function App() {
                 <Menu/>    {/* Подключаем компонент Меню */}
                 <Route exact path="/" render={()=><PostList/>} />
                 <Route path="/addPost" render={()=><AddPost/>}/>
-                <Route path="/post" render={()=><Post/>}/>
+                <Route path="/post/:id" render={(props)=><Post {...props}/>}/>
                 <Route path="/reg" render={()=><Reg/>}/>
             </BrowserRouter>
         </div>
