@@ -55,7 +55,7 @@ export class AddPost extends React.Component{
                     if(result.result === "exist"){
                         this.setState({
                             info: "Такой заголовок уже существует!",
-                            submitBtn: "disabled"
+                            submitBtn: "disabled",
                         })
                     }else{
                         this.setState({

@@ -11,6 +11,7 @@ export class Reg extends React.Component{
             email:"",
             pass:"",
             info:"",
+            info_ok:"",
         }
     }
 
@@ -27,6 +28,16 @@ export class Reg extends React.Component{
         }).then(response=>response.json())
             .then(result=>{
                 console.log(result)
+                if (result.result === "success"){
+                    this.setState({
+                        info_ok:"Регистрация прошла успешно. Выполните вход."
+                    })
+                } else {
+                    this.setState({
+                        info: "Пользователь с таким email уже существует. Используйте другой email.",
+                        info_ok:""
+                    })
+                }
             })
     }
 
@@ -46,13 +57,14 @@ export class Reg extends React.Component{
                 body: formData
             }).then(response=>response.json())
                 .then(result=>{
-                    if(result.result === "exist"){
+                    console.log(result.result);
+                    if (result.result === "exist"){
                         this.setState({
-                            info:"Пользователь с таким email уже существует. Используйте другой email."
+                            info:"handleInputChange: Пользователь с таким email уже существует. Используйте другой email."
                         })
                     } else {
                         this.setState({
-                            info: "Регистрация прошла успешно. Выполните вход."
+                            info: ""
                         })
                     }
                 });
@@ -78,6 +90,7 @@ export class Reg extends React.Component{
                 </div>
                 <div className="mb-3">
                     <input type="submit" className="form-control btn btn-primary" value="Зарегистрироваться"/>
+                    <p className="text-center my-3" style={{color:"green"}}>{this.state.info_ok}</p>
                 </div>
             </form>
         </div>
